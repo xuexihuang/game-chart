@@ -82,7 +82,7 @@ config:
     patch: []
 
   jetstream:
-    enabled: false
+    enabled: true
 
     fileStore:
       enabled: true
@@ -93,8 +93,8 @@ config:
       ############################################################
       pvc:
         enabled: true
-        size: 10Gi
-        storageClassName:
+        size: 2Gi
+        storageClassName: nfs-client
 
         # merge or patch the jetstream pvc
         # https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#persistentvolumeclaim-v1-core
