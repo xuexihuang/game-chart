@@ -1,0 +1,30 @@
+config:
+  Name: mq
+  ListenOn: 0.0.0.0:3001
+  Mode: dev
+
+  SantQueue:
+    ClusterID: test-cluster
+    ClientID: mq-1
+    Hosts: nats://192.168.124.10:14222,nats://192.168.124.10:14223
+
+  Redis:
+    Host: 192.168.124.10:6379
+    Type: node
+  UserRpc:
+    Etcd:
+      Hosts:
+        - 192.168.124.10:2379
+      Key: user.rpc
+
+  GameRpc:
+    Etcd:
+      Hosts:
+        - 192.168.124.10:2379
+      Key: game.rpc
+
+  SystemRpc:
+    Etcd:
+      Hosts:
+        - 192.168.124.10:2379
+      Key: system.rpc

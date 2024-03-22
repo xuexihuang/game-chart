@@ -1,0 +1,18 @@
+config:
+  Name: buryPoint.api
+  Host: 0.0.0.0
+  Port: 9889
+  Mode: dev
+  BuryPointRpc:
+    Etcd:
+      Hosts:
+        - 192.168.124.10:2379
+      Key: buryPoint.rpc
+
+  Redis:
+    Host: 192.168.124.10:6379
+    Type: node
+
+  JwtAuth:
+    AccessSecret: ae0536f9-6450-4606-8e13-5a19ed505da0
+    AccessExpire: 2592000

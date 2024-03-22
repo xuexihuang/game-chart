@@ -1,0 +1,23 @@
+image:
+  repository: registry.cn-shenzhen.aliyuncs.com/huanglin_hub/admin
+  pullPolicy: Always
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: "k8s"
+
+ingress:
+  enabled: true
+  className: "nginx"
+  annotations:
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  hosts:
+    - host: admin.dev1.local
+      paths:
+        - path: /api/admin(/|$)(.*)
+          pathType: ImplementationSpecific
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local

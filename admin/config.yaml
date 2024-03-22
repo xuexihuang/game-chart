@@ -1,0 +1,73 @@
+config:
+  Name: admin.api
+  Host: 0.0.0.0
+  Port: 10000
+  Timeout: 99999
+  MaxBytes: 10485760
+  Mode: dev
+
+  ObjectName: test
+  ServerOpenDate: "2023-06-13 00:00:00"
+  Timezone: America/Sao_Paulo
+
+  Mysql:
+    DataSource: root:123456@tcp(192.168.124.100:3306)/newfoguetebet?charset=utf8mb4&parseTime=true
+
+
+  Cache:
+    - Host: 192.168.124.10:6379
+
+  Redis:
+    Host: 192.168.124.10:6379
+    Type: node
+
+  SantQueue:
+    ClusterID: test-cluster
+    ClientID: test-1
+    Hosts: nats://192.168.124.10:14222,nats://192.168.124.10:14223
+
+  Log:
+    ServiceName: user-rpc
+    Level: debug
+    Mode: file
+    KeepDays: 3
+
+  Aws:
+    AppId: xxxxxxxxxxxxxxxx
+    Secret: xxxxxxxxxxxxxxx
+    Region: sa-east-1
+    OpenSearch:
+      Remote: false
+      Domain: http://192.168.124.10:9200
+
+  JwtAuth:
+    AccessSecret: ae0536f9-6450-4606-8e13-5a19ed505da0
+    AccessExpire: 2592000
+    BufferTime: 7200
+
+  BuryPointRpc:
+    Etcd:
+      Hosts:
+        - 192.168.124.10:2379
+      Key: buryPoint.rpc
+
+  TransactionRpc:
+    Etcd:
+      Hosts:
+        - 192.168.124.10:2379
+      Key: transaction.rpc
+    Timeout: 99999999
+
+  UserRpc:
+    Etcd:
+      Hosts:
+        - 192.168.124.10:2379
+      Key: user.rpc
+    Timeout: 999999999
+
+  SystemRpc:
+    Etcd:
+      Hosts:
+        - 192.168.124.10:2379
+      Key: system.rpc
+    Timeout: 999999999

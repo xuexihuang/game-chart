@@ -1,0 +1,54 @@
+config:
+  Name: transaction.rpc
+  ListenOn: 192.168.124.10:8082
+  Timeout: 10000
+
+  Mode: dev
+
+  Etcd:
+    Hosts:
+      - 192.168.124.10:2379
+    Key: transaction.rpc
+
+  Mysql:
+    DataSource: root:123456@tcp(192.168.124.100:3306)/newfoguetebet?charset=utf8mb4&parseTime=true
+
+  Redis:
+    Host: 192.168.124.10:6379
+    Type: node
+
+  Cache:
+    - Host: 192.168.124.10:6379
+
+  Aws:
+    AppId: xxxxxx
+    Secret: xxxxxxxx
+    Region: sa-east-1
+    OpenSearch:
+      Remote: false
+      Domain: http://192.168.124.10:9200
+
+  BuryPointRpc:
+    Etcd:
+      Hosts:
+        - 192.168.124.10:2379
+      Key: buryPoint.rpc
+
+  SystemRpc:
+    Etcd:
+      Hosts:
+        - 192.168.124.10:2379
+      Key: system.rpc
+    Timeout: 99999999
+
+  UserRpc:
+    Etcd:
+      Hosts:
+        - 192.168.124.10:2379
+      Key: user.rpc
+      Timeout: 99999999
+
+  SantQueue:
+    ClusterID: test-cluster
+    ClientID: trans-1
+    Hosts: nats://192.168.124.10:14222,nats://192.168.124.10:14223

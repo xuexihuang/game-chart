@@ -1,0 +1,18 @@
+config:
+  Name: system.rpc
+  ListenOn: 192.168.124.10:8083
+  Mode: dev
+  Etcd:
+    Hosts:
+      - 192.168.124.10:2379
+    Key: system.rpc
+
+  Mysql:
+    DataSource: root:123456@tcp(192.168.124.100:3306)/newfoguetebet?charset=utf8mb4&parseTime=true
+
+  Cache:
+    - Host: 192.168.124.10:6379
+
+  Redis:
+    Host: 192.168.124.10:6379
+    Type: node

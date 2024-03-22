@@ -1,0 +1,30 @@
+config:
+  Name: recharge
+  Host: 0.0.0.0
+  Port: 8890
+  Timeout: 10000
+  Mode: dev
+
+  JwtAuth:
+    AccessSecret: ae0536f9-6450-4606-8e13-5a19ed505da0
+    AccessExpire: 2592000
+
+  SystemRpc:
+    Etcd:
+      Hosts:
+        - 192.168.124.10:2379
+      Key: system.rpc
+
+  UserRpc:
+    Etcd:
+      Hosts:
+        - 192.168.124.10:2379
+      Key: user.rpc
+    Timeout: 99999999
+
+  TransactionRpc:
+    Etcd:
+      Hosts:
+        - 192.168.124.10:2379
+      Key: transaction.rpc
+    Timeout: 99999

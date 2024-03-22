@@ -1,0 +1,62 @@
+config:
+  Name: usercenter
+  Host: 0.0.0.0
+  Port: 8888
+  MaxBytes: 10485760
+  Mode: dev
+
+  JwtAuth:
+    AccessSecret: ae0536f9-6450-4606-8e13-5a19ed505da0
+    AccessExpire: 2592000
+
+  Redis:
+    Host: 192.168.124.10:6379
+    Type: node
+
+  Aws:
+    AppId: xxxxxxxx
+    Secret: xxxxxxxxxx
+    Region: sa-east-1
+    OpenSearch:
+      Remote: false
+      Domain: http://192.168.124.10:9200
+
+
+  UserRpc:
+    Etcd:
+      Hosts:
+        - 192.168.124.10:2379
+      Key: user.rpc
+
+  BuryPointRpc:
+    Etcd:
+      Hosts:
+        - 192.168.124.10:2379
+      Key: buryPoint.rpc
+
+  GameRpc:
+    Etcd:
+      Hosts:
+        - 192.168.124.10:2379
+      Key: game.rpc
+
+  SystemRpc:
+    Etcd:
+      Hosts:
+        - 192.168.124.10:2379
+      Key: system.rpc
+
+  TransRpc:
+    Etcd:
+      Hosts:
+        - 192.168.124.10:2379
+      Key: transaction.rpc
+    Timeout: 99999
+
+  Log:
+    ServiceName: user-api
+    Level: error
+    Mode: file
+    KeepDays: 3
+
+  Timezone: America/Sao_Paulo

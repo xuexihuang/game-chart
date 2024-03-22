@@ -1,0 +1,73 @@
+config:
+  Name: game.api
+  Host: 0.0.0.0
+  Port: 8889
+  Mode: dev
+
+  UserRpc:
+    Etcd:
+      Hosts:
+        - 192.168.124.10:2379
+      Key: user.rpc
+
+  GameRpc:
+    Etcd:
+      Hosts:
+        - 192.168.124.10:2379
+      Key: game.rpc
+
+  SystemRpc:
+    Etcd:
+      Hosts:
+        - 192.168.124.10:2379
+      Key: system.rpc
+
+  PPConfig:
+    Secret: testKey
+
+  Aws:
+    AppId: xxxxxxxxxxxxxxx
+    Secret: xxxxxxxxxx
+    Region: sa-east-1
+    OpenSearch:
+      Remote: false
+      Domain: http://192.168.124.10:9200
+    Cache:
+      Domain: 192.168.124.10:6379
+      Port: 6379
+
+  Redis:
+    Host: 192.168.124.10:6379
+    Type: node
+
+  GameConfig:
+    MinRate: 0.02
+    MaxRate: 0.05
+    Lang: pt
+    CountryCode: BR
+    Currency: BRL
+    EffectiveMultiplier: 0.6
+    Aggr:
+      Host: http://192.168.124.50:8888/
+      BrandId: brand123
+      ApiKey: abcd1234
+    # PG:
+    #   Host: https://public.pg-redirect.net
+    #   Redirect: https://m.pg-redirect.net/
+    #   OperatorToken: xxxxxxxxxxxxx
+    #   SecretKey: xxxxxxxxxxxxxx
+    #   Salt: 8f77065aba1c29432021c18b88106171
+    #   Hash: false
+    # Evo:
+    #   Host: https://gaming.stagedc.net/
+    #   BrandId: xxxxxxxxxxxxx
+    #   ApiKey: xxxxxxxxxxxxxxxxx
+
+  JwtAuth:
+    AccessSecret: ae0536f9-6450-4606-8e13-5a19ed505da0
+    AccessExpire: 2592000
+
+  SantQueue:
+    ClusterID: test-cluster
+    ClientID: game-api-1
+    Hosts: nats://192.168.124.10:14222,nats://192.168.124.10:14223
