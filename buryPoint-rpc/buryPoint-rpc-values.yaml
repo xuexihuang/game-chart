@@ -1,5 +1,5 @@
 image:
-  repository: registry.cn-shenzhen.aliyuncs.com/huanglin_hub/buryPoint-rpc
+  repository: registry.cn-shenzhen.aliyuncs.com/huanglin_hub/burypoint-rpc
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
   tag: "k8s"

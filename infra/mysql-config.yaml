@@ -5,9 +5,9 @@ global:
   storageClass: "nfs-client"
   imageRegistry: "m.daocloud.io/docker.io"
 auth:
-  rootPassword: "openIM123"
+  rootPassword: "123456"
   createDatabase: true
-  database: "openIM_v3"
+  database: "newfoguetebet"
   replicationUser: replicator
   replicationPassword: "openIM123"
 primary:

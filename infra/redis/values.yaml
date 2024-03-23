@@ -21,7 +21,7 @@ global:
   imagePullSecrets: []
   storageClass: "nfs-client"
   redis:
-    password: "openIM123"
+    password: ""
 
 ## @section Common parameters
 ##

@@ -11,20 +11,20 @@ config:
   Timezone: America/Sao_Paulo
 
   Mysql:
-    DataSource: root:123456@tcp(192.168.124.100:3306)/newfoguetebet?charset=utf8mb4&parseTime=true
+    DataSource: root:123456@tcp(mysql:3306)/newfoguetebet?charset=utf8mb4&parseTime=true
 
 
   Cache:
-    - Host: 192.168.124.10:6379
+    - Host: redis-master:6379
 
   Redis:
-    Host: 192.168.124.10:6379
+    Host: redis-master:6379
     Type: node
 
   SantQueue:
     ClusterID: test-cluster
     ClientID: test-1
-    Hosts: nats://192.168.124.10:14222,nats://192.168.124.10:14223
+    Hosts: nats://nats:4222
 
   Log:
     ServiceName: user-rpc
@@ -38,7 +38,7 @@ config:
     Region: sa-east-1
     OpenSearch:
       Remote: false
-      Domain: http://192.168.124.10:9200
+      Domain: http://elasticsearch-master:9200
 
   JwtAuth:
     AccessSecret: ae0536f9-6450-4606-8e13-5a19ed505da0
