@@ -7,9 +7,10 @@ metadata:
 spec:
   type: NodePort
   ports:
-    - port: 19200
+    - port: 9200
       targetPort: http
       protocol: TCP
       name: http
+      nodePort: 39200
   selector:
     {{- include "es.selectorLabels" . | nindent 4 }}
