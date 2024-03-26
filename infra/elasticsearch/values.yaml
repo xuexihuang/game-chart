@@ -90,10 +90,10 @@ esJavaOpts: "" # example: "-Xmx1g -Xms1g"
 resources:
   requests:
     cpu: "1000m"
-    memory: "2Gi"
+    memory: "1Gi"
   limits:
     cpu: "1000m"
-    memory: "2Gi"
+    memory: "1Gi"
 
 initResources: {}
 # limits:
@@ -308,7 +308,7 @@ networkPolicy:
   ## elasticsearch-master-transport-client: "true"
 
   http:
-    enabled: false
+    enabled: true
     ## if explicitNamespacesSelector is not set or set to {}, only client Pods being in the networkPolicy's namespace
     ## and matching all criteria can reach the DB.
     ## But sometimes, we want the Pods to be accessible to clients from other namespaces, in this case, we can use this
