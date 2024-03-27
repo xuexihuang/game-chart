@@ -13,13 +13,19 @@ config:
     Pass: game123456
     Type: node
   UserRpc:
-    Target: k8s://dev1-game/user-rpc:80
+    #Target: k8s://dev1-game/user-rpc:80
+    Endpoints:
+      - user-rpc:80
     NonBlock: true
 
   GameRpc:
-    Target: k8s://dev1-game/game-rpc:80
+    #Target: k8s://dev1-game/game-rpc:80
+    Endpoints:
+      - game-rpc:80
     NonBlock: true
 
   SystemRpc:
-    Target: k8s://dev1-game/system-rpc:80
+    #Target: k8s://dev1-game/system-rpc:80
+    Endpoints:
+      - system-rpc:80
     NonBlock: true

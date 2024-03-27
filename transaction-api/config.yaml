@@ -10,13 +10,19 @@ config:
     AccessExpire: 2592000
 
   SystemRpc:
-    Target: k8s://dev1-game/system-rpc:80
+    #Target: k8s://dev1-game/system-rpc:80
+    Endpoints:
+      - system-rpc:80
     NonBlock: true
 
   UserRpc:
-    Target: k8s://dev1-game/user-rpc:80
+    #Target: k8s://dev1-game/user-rpc:80
+    Endpoints:
+      - user-rpc:80
     NonBlock: true
 
   TransactionRpc:
-    Target: k8s://dev1-game/transaction-rpc:80
+    #Target: k8s://dev1-game/transaction-rpc:80
+    Endpoints:
+      - transaction-rpc:80
     NonBlock: true

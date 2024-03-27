@@ -4,7 +4,9 @@ config:
   Port: 80
   Mode: dev
   BuryPointRpc:
-    Target: k8s://dev1-game/burypoint-rpc:80
+    #Target: k8s://dev1-game/burypoint-rpc:80
+    Endpoints:
+      - burypoint-rpc:80
     NonBlock: true
 
   Redis:

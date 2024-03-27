@@ -26,15 +26,21 @@ config:
       Domain: http://es-node:9200
 
   BuryPointRpc:
-    Target: k8s://dev1-game/burypoint-rpc:80
+    #Target: k8s://dev1-game/burypoint-rpc:80
+    Endpoints:
+      - burypoint-rpc:80
     NonBlock: true
 
   SystemRpc:
-    Target: k8s://dev1-game/system-rpc:80
+    #Target: k8s://dev1-game/system-rpc:80
+    Endpoints:
+      - system-rpc:80
     NonBlock: true
 
   UserRpc:
-    Target: k8s://dev1-game/user-rpc:80
+    #Target: k8s://dev1-game/user-rpc:80
+    Endpoints:
+      - user-rpc:80
     NonBlock: true
 
   SantQueue:

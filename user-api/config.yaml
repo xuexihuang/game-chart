@@ -24,23 +24,33 @@ config:
 
 
   UserRpc:
-    Target: k8s://dev1-game/user-rpc:80
+    #Target: k8s://dev1-game/user-rpc:80
+    Endpoints:
+      - user-rpc:80
     NonBlock: true
 
   BuryPointRpc:
-    Target: k8s://dev1-game/burypoint-rpc:80
+    #Target: k8s://dev1-game/burypoint-rpc:80
+    Endpoints:
+      - burypoint-rpc:80
     NonBlock: true
 
   GameRpc:
-    Target: k8s://dev1-game/game-rpc:80
+    #Target: k8s://dev1-game/game-rpc:80
+    Endpoints:
+      - game-rpc:80
     NonBlock: true
 
   SystemRpc:
-    Target: k8s://dev1-game/system-rpc:80
+    #Target: k8s://dev1-game/system-rpc:80
+    Endpoints:
+      - system-rpc:80
     NonBlock: true
 
   TransRpc:
-    Target: k8s://dev1-game/transaction-rpc:80
+    #Target: k8s://dev1-game/transaction-rpc:80
+    Endpoints:
+      - transaction-rpc:80
     NonBlock: true
 
   Log:

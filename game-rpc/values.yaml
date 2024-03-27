@@ -85,7 +85,7 @@ autoscaling:
 volumes:
   - name: config
     configMap:
-      name: server-cm
+      name: game-rpc-cm
 # - name: foo
 #   secret:
 #     secretName: mysecret
@@ -93,7 +93,7 @@ volumes:
 
 # Additional volumeMounts on the output Deployment definition.
 volumeMounts:
-  - mountPath: /app/config/config.yaml
+  - mountPath: /app/etc/config.yaml
     name: config
     subPath: config.yaml
 
