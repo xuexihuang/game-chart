@@ -1,7 +1,7 @@
 {{/*
 Expand the name of the chart.
 */}}
-{{- define "buryPoint-rpc.name" -}}
+{{- define "burypoint-rpc.name" -}}
 {{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
@@ -10,7 +10,7 @@ Create a default fully qualified app name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 If release name contains chart name it will be used as a full name.
 */}}
-{{- define "buryPoint-rpc.fullname" -}}
+{{- define "burypoint-rpc.fullname" -}}
 {{- if .Values.fullnameOverride }}
 {{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}
 {{- else }}
@@ -26,16 +26,16 @@ If release name contains chart name it will be used as a full name.
 {{/*
 Create chart name and version as used by the chart label.
 */}}
-{{- define "buryPoint-rpc.chart" -}}
+{{- define "burypoint-rpc.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
 {{/*
 Common labels
 */}}
-{{- define "buryPoint-rpc.labels" -}}
-helm.sh/chart: {{ include "buryPoint-rpc.chart" . }}
-{{ include "buryPoint-rpc.selectorLabels" . }}
+{{- define "burypoint-rpc.labels" -}}
+helm.sh/chart: {{ include "burypoint-rpc.chart" . }}
+{{ include "burypoint-rpc.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
@@ -45,17 +45,17 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{/*
 Selector labels
 */}}
-{{- define "buryPoint-rpc.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "buryPoint-rpc.name" . }}
+{{- define "burypoint-rpc.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "burypoint-rpc.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
 {{/*
 Create the name of the service account to use
 */}}
-{{- define "buryPoint-rpc.serviceAccountName" -}}
+{{- define "burypoint-rpc.serviceAccountName" -}}
 {{- if .Values.serviceAccount.create }}
-{{- default (include "buryPoint-rpc.fullname" .) .Values.serviceAccount.name }}
+{{- default (include "burypoint-rpc.fullname" .) .Values.serviceAccount.name }}
 {{- else }}
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}

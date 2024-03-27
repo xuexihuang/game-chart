@@ -1,5 +1,5 @@
 config:
-  Name: buryPoint.api
+  Name: burypoint.api
   Host: 0.0.0.0
   Port: 9889
   Mode: dev
@@ -7,7 +7,7 @@ config:
     Etcd:
       Hosts:
         - 192.168.124.10:2379
-      Key: buryPoint.rpc
+      Key: burypoint.rpc
 
   Redis:
     Host: 192.168.124.10:6379
