@@ -86,6 +86,10 @@ volumes:
   - name: config
     configMap:
       name: admin-cm
+  - name: rbacModel
+    hostPath:
+      path: /data/deploy/admin/etc
+      type: DirectoryOrCreate
 # - name: foo
 #   secret:
 #     secretName: mysecret
@@ -96,6 +100,9 @@ volumeMounts:
   - mountPath: /app/etc/config.yaml
     name: config
     subPath: config.yaml
+  - name: rbacModel
+    mountPath: "/app/etc"
+    subPath: etc
 # - name: foo
 #   mountPath: "/etc/foo"
 #   readOnly: true
