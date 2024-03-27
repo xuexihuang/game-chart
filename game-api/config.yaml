@@ -34,6 +34,7 @@ config:
       Domain: http://es-node:9200
     Cache:
       Domain: redis-master:6379
+      Pass: game123456
       Port: 6379
 
   Redis:

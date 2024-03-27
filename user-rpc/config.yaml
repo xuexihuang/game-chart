@@ -25,6 +25,7 @@ config:
 
   Cache:
     - Host: redis-master:6379
+      Pass: game123456
 
   Aws:
     AppId: xxxxxxxx
