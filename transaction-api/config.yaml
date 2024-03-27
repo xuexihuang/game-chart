@@ -1,7 +1,7 @@
 config:
   Name: recharge
   Host: 0.0.0.0
-  Port: 8890
+  Port: 80
   Timeout: 10000
   Mode: dev
 
@@ -10,21 +10,13 @@ config:
     AccessExpire: 2592000
 
   SystemRpc:
-    Etcd:
-      Hosts:
-        - 192.168.124.10:2379
-      Key: system.rpc
+    Target: k8s://dev1-game/system-rpc:80
+    NonBlock: true
 
   UserRpc:
-    Etcd:
-      Hosts:
-        - 192.168.124.10:2379
-      Key: user.rpc
-    Timeout: 99999999
+    Target: k8s://dev1-game/user-rpc:80
+    NonBlock: true
 
   TransactionRpc:
-    Etcd:
-      Hosts:
-        - 192.168.124.10:2379
-      Key: transaction.rpc
-    Timeout: 99999
+    Target: k8s://dev1-game/transaction-rpc:80
+    NonBlock: true

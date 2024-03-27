@@ -1,24 +1,21 @@
 config:
   Name: transaction.rpc
-  ListenOn: 192.168.124.10:8082
+  ListenOn: 0.0.0.0:80
   Timeout: 10000
 
   Mode: dev
 
-  Etcd:
-    Hosts:
-      - 192.168.124.10:2379
-    Key: transaction.rpc
 
   Mysql:
-    DataSource: root:123456@tcp(192.168.124.100:3306)/newfoguetebet?charset=utf8mb4&parseTime=true
-
-  Redis:
-    Host: 192.168.124.10:6379
-    Type: node
+    DataSource: root:123456@tcp(mysql:3306)/newfoguetebet?charset=utf8mb4&parseTime=true
 
   Cache:
-    - Host: 192.168.124.10:6379
+    - Host: redis-master:6379
+
+  Redis:
+    Host: redis-master:6379
+    Pass: game123456
+    Type: node
 
   Aws:
     AppId: xxxxxx
@@ -26,29 +23,21 @@ config:
     Region: sa-east-1
     OpenSearch:
       Remote: false
-      Domain: http://192.168.124.10:9200
+      Domain: http://es-node:9200
 
   BuryPointRpc:
-    Etcd:
-      Hosts:
-        - 192.168.124.10:2379
-      Key: buryPoint.rpc
+    Target: k8s://dev1-game/burypoint-rpc:80
+    NonBlock: true
 
   SystemRpc:
-    Etcd:
-      Hosts:
-        - 192.168.124.10:2379
-      Key: system.rpc
-    Timeout: 99999999
+    Target: k8s://dev1-game/system-rpc:80
+    NonBlock: true
 
   UserRpc:
-    Etcd:
-      Hosts:
-        - 192.168.124.10:2379
-      Key: user.rpc
-      Timeout: 99999999
+    Target: k8s://dev1-game/user-rpc:80
+    NonBlock: true
 
   SantQueue:
     ClusterID: test-cluster
     ClientID: trans-1
-    Hosts: nats://192.168.124.10:14222,nats://192.168.124.10:14223
+    Hosts: nats://nats-stream-node:4222

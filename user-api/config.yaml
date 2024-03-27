@@ -1,7 +1,7 @@
 config:
   Name: usercenter
   Host: 0.0.0.0
-  Port: 8888
+  Port: 80
   MaxBytes: 10485760
   Mode: dev
 
@@ -10,7 +10,8 @@ config:
     AccessExpire: 2592000
 
   Redis:
-    Host: 192.168.124.10:6379
+    Host: redis-master:6379
+    Pass: game123456
     Type: node
 
   Aws:
@@ -19,44 +20,33 @@ config:
     Region: sa-east-1
     OpenSearch:
       Remote: false
-      Domain: http://192.168.124.10:9200
+      Domain: http://es-node:9200
 
 
   UserRpc:
-    Etcd:
-      Hosts:
-        - 192.168.124.10:2379
-      Key: user.rpc
+    Target: k8s://dev1-game/user-rpc:80
+    NonBlock: true
 
   BuryPointRpc:
-    Etcd:
-      Hosts:
-        - 192.168.124.10:2379
-      Key: buryPoint.rpc
+    Target: k8s://dev1-game/burypoint-rpc:80
+    NonBlock: true
 
   GameRpc:
-    Etcd:
-      Hosts:
-        - 192.168.124.10:2379
-      Key: game.rpc
+    Target: k8s://dev1-game/game-rpc:80
+    NonBlock: true
 
   SystemRpc:
-    Etcd:
-      Hosts:
-        - 192.168.124.10:2379
-      Key: system.rpc
+    Target: k8s://dev1-game/system-rpc:80
+    NonBlock: true
 
   TransRpc:
-    Etcd:
-      Hosts:
-        - 192.168.124.10:2379
-      Key: transaction.rpc
-    Timeout: 99999
+    Target: k8s://dev1-game/transaction-rpc:80
+    NonBlock: true
 
   Log:
     ServiceName: user-api
     Level: error
-    Mode: file
+    Mode: console
     KeepDays: 3
 
   Timezone: America/Sao_Paulo

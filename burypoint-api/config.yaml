@@ -1,16 +1,15 @@
 config:
   Name: burypoint.api
   Host: 0.0.0.0
-  Port: 9889
+  Port: 80
   Mode: dev
   BuryPointRpc:
-    Etcd:
-      Hosts:
-        - 192.168.124.10:2379
-      Key: burypoint.rpc
+    Target: k8s://dev1-game/burypoint-rpc:80
+    NonBlock: true
 
   Redis:
-    Host: 192.168.124.10:6379
+    Host: redis-master:6379
+    Pass: game123456
     Type: node
 
   JwtAuth:

@@ -1,20 +1,17 @@
 config:
   Name: game.rpc
   Mode: dev
-  ListenOn: 192.168.124.10:8081
-  Etcd:
-    Hosts:
-      - 192.168.124.10:2379
-    Key: game.rpc
+  ListenOn: 0.0.0.0:80
 
   Mysql:
-    DataSource: root:123456@tcp(192.168.124.100:3306)/newfoguetebet?charset=utf8mb4&parseTime=true
+    DataSource: root:123456@tcp(mysql:3306)/newfoguetebet?charset=utf8mb4&parseTime=true
 
   Cache:
-    - Host: 192.168.124.10:6379
+    - Host: redis-master:6379
 
   Redis:
-    Host: 192.168.124.10:6379
+    Host: redis-master:6379
+    Pass: game123456
     Type: node
 
   Aws:
@@ -23,4 +20,4 @@ config:
     Region: sa-east-1
     OpenSearch:
       Remote: false
-      Domain: http://192.168.124.10:9200
+      Domain: http://es-node:9200

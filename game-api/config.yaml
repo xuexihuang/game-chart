@@ -1,26 +1,20 @@
 config:
   Name: game.api
   Host: 0.0.0.0
-  Port: 8889
+  Port: 80
   Mode: dev
 
   UserRpc:
-    Etcd:
-      Hosts:
-        - 192.168.124.10:2379
-      Key: user.rpc
+    Target: k8s://dev1-game/user-rpc:80
+    NonBlock: true
 
   GameRpc:
-    Etcd:
-      Hosts:
-        - 192.168.124.10:2379
-      Key: game.rpc
+    Target: k8s://dev1-game/game-rpc:80
+    NonBlock: true
 
   SystemRpc:
-    Etcd:
-      Hosts:
-        - 192.168.124.10:2379
-      Key: system.rpc
+    Target: k8s://dev1-game/system-rpc:80
+    NonBlock: true
 
   PPConfig:
     Secret: testKey
@@ -31,13 +25,13 @@ config:
     Region: sa-east-1
     OpenSearch:
       Remote: false
-      Domain: http://192.168.124.10:9200
+      Domain: http://es-node:9200
     Cache:
-      Domain: 192.168.124.10:6379
+      Domain: redis-master:6379
       Port: 6379
 
   Redis:
-    Host: 192.168.124.10:6379
+    Host: redis-master:6379
     Type: node
 
   GameConfig:
@@ -70,4 +64,4 @@ config:
   SantQueue:
     ClusterID: test-cluster
     ClientID: game-api-1
-    Hosts: nats://192.168.124.10:14222,nats://192.168.124.10:14223
+    Hosts: nats://nats-stream-node:4222

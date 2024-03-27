@@ -1,15 +1,11 @@
 config:
   Name: user.rpc
-  ListenOn: 192.168.124.10:8808
+  ListenOn: 0.0.0.0:80
   Prod: false
   Timeout: 99999
 
   Mode: dev
 
-  Etcd:
-    Hosts:
-      - 192.168.124.10:2379
-    Key: user.rpc
 
   JwtAuth:
     AccessSecret: ae0536f9-6450-4606-8e13-5a19ed505da0
@@ -20,14 +16,15 @@ config:
     DatacenterID: 1
 
   Mysql:
-    DataSource: root:123456@tcp(192.168.124.100:3306)/newfoguetebet?charset=utf8mb4&parseTime=true
+    DataSource: root:123456@tcp(mysql:3306)/newfoguetebet?charset=utf8mb4&parseTime=true
 
   Redis:
-    Host: 192.168.124.10:6379
+    Host: redis-master:6379
+    Pass: game123456
     Type: node
 
   Cache:
-    - Host: 192.168.124.10:6379
+    - Host: redis-master:6379
 
   Aws:
     AppId: xxxxxxxx
@@ -35,7 +32,7 @@ config:
     Region: sa-east-1
     OpenSearch:
       Remote: false
-      Domain: http://192.168.124.10:9200
+      Domain: http://es-node:9200
   Email:
     From: no-reply@foguetebet.com
     Host: smtpout.secureserver.net
@@ -49,26 +46,20 @@ config:
       RedirectURL: ccccc
 
   BuryPointRpc:
-    Etcd:
-      Hosts:
-        - 192.168.124.10:2379
-      Key: buryPoint.rpc
-    Timeout: 9999999999
+    Target: k8s://dev1-game/burypoint-rpc:80
+    NonBlock: true
 
   SystemRpc:
-    Etcd:
-      Hosts:
-        - 192.168.124.10:2379
-      Key: system.rpc
-    Timeout: 9999999999
+    Target: k8s://dev1-game/system-rpc:80
+    NonBlock: true
 
   Log:
     ServiceName: user-rpc
     Level: debug
-    Mode: file
+    Mode: console
     KeepDays: 3
 
   SantQueue:
     ClusterID: test-cluster
     ClientID: game-api-1
-    Hosts: nats://192.168.124.10:14222,nats://192.168.124.10:14223
+    Hosts: nats://nats-stream-node:4222
