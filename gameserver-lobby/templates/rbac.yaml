@@ -1,0 +1,27 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: {{ include "gameserver-lobby.fullname" . }}
+rules:
+  - apiGroups:
+      - ""
+    resources:
+      - pods
+    verbs:
+      - get
+      - list
+      - patch
+      - watch
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: {{ include "gameserver-lobby.fullname" . }}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: {{ include "gameserver-lobby.fullname" . }}
+subjects:
+  - kind: ServiceAccount
+    name: {{ include "gameserver-lobby.fullname" . }}
+    namespace: dev1-game # 添加这行指定 ServiceAccount 所在的命名空间
