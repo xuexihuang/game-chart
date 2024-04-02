@@ -24,3 +24,4 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: {{ include "gameserver-gate.fullname" . }}
+    namespace: dev1-game # 添加这行指定 ServiceAccount 所在的命名空间
