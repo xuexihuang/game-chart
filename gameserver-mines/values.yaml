@@ -5,10 +5,10 @@
 replicaCount: 1
 
 image:
-  repository: nginx
-  pullPolicy: IfNotPresent
+  repository: registry.cn-shenzhen.aliyuncs.com/huanglin_hub/gameserver-mines
+  pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
-  tag: ""
+  tag: "k8s"
 
 imagePullSecrets: []
 nameOverride: ""
@@ -72,13 +72,7 @@ resources: {}
   #   memory: 128Mi
 
 livenessProbe:
-  httpGet:
-    path: /
-    port: http
 readinessProbe:
-  httpGet:
-    path: /
-    port: http
 
 autoscaling:
   enabled: false
