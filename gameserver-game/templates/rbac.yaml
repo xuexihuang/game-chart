@@ -1,7 +1,7 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: {{ include "gameserver-lobby.fullname" . }}
+  name: {{ include "gameserver-game.fullname" . }}
 rules:
   - apiGroups:
       - ""
@@ -16,12 +16,12 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-  name: {{ include "gameserver-lobby.fullname" . }}
+  name: {{ include "gameserver-game.fullname" . }}
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: {{ include "gameserver-lobby.fullname" . }}
+  name: {{ include "gameserver-game.fullname" . }}
 subjects:
   - kind: ServiceAccount
-    name: {{ include "gameserver-lobby.fullname" . }}
+    name: {{ include "gameserver-game.fullname" . }}
     namespace: dev1-game # 添加这行指定 ServiceAccount 所在的命名空间
