@@ -54,7 +54,10 @@ ingress:
       paths:
         - path: /
           pathType: ImplementationSpecific
-  tls: []
+  tls:
+    - secretName: admintls
+      hosts:
+        - admin.dev1.local
   #  - secretName: chart-example-tls
   #    hosts:
   #      - chart-example.local
