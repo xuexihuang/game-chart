@@ -51,8 +51,8 @@ ingress:
     alb.ingress.kubernetes.io/target-type: ip
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
-  hosts:
-    - host: game360.club
+  hosts: game360.club
+    - host:
       paths:
         - path: /
           pathType: ImplementationSpecific
