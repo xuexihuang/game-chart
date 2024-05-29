@@ -1,37 +1,38 @@
-Name: admin.rpc
-ListenOn: 0.0.0.0:80
-Mode: dev
-Middlewares:
-  Stat: false
-Timezone: America/Sao_Paulo
+config:
+  Name: admin.rpc
+  ListenOn: 0.0.0.0:80
+  Mode: dev
+  Middlewares:
+    Stat: false
+  Timezone: America/Sao_Paulo
 
-Mysql:
-  DataSource: root:123456@tcp(basic-tidb.tidb-cluster.svc.cluster.local:4000)/app?charset=utf8mb4&parseTime=true
+  Mysql:
+    DataSource: root:123456@tcp(basic-tidb.tidb-cluster.svc.cluster.local:4000)/app?charset=utf8mb4&parseTime=true
 
-Cache:
-  - Host: redis-master:6379
+  Cache:
+    - Host: redis-master:6379
+      Pass: game123456
+
+  Redis:
+    Host: redis-master:6379
     Pass: game123456
+    Type: node
 
-Redis:
-  Host: redis-master:6379
-  Pass: game123456
-  Type: node
+  JwtAuth:
+    AccessSecret: ae0536f9-6450-4606-8e13-5a19ed505da0
+    AccessExpire: 2592000
+    BufferTime: 7200
+    MultiSite: false
 
-JwtAuth:
-  AccessSecret: ae0536f9-6450-4606-8e13-5a19ed505da0
-  AccessExpire: 2592000
-  BufferTime: 7200
-  MultiSite: false
+  SantQueue:
+    ClusterID: test-cluster
+    ClientID: game-api-1
+    Hosts: nats://nats-stream-node:4222
 
-SantQueue:
-  ClusterID: test-cluster
-  ClientID: game-api-1
-  Hosts: nats://nats-stream-node:4222
-
-Aws:
-  AppId: xxxxxxx
-  Secret: xxxxxxxx
-  Region: sa-east-1
-  OpenSearch:
-    Remote: false
-    Domain: http://es-node:9200
+  Aws:
+    AppId: xxxxxxx
+    Secret: xxxxxxxx
+    Region: sa-east-1
+    OpenSearch:
+      Remote: false
+      Domain: http://es-node:9200

@@ -1,30 +1,31 @@
-Name: admin.api
-Host: 0.0.0.0
-Port: 80
+config:
+  Name: admin.api
+  Host: 0.0.0.0
+  Port: 80
 
-Mode: dev
-Middlewares:
-  Log: false
-ObjectName: test
-ServerOpenDate: "2023-06-13 00:00:00"
-Timezone: America/Sao_Paulo
+  Mode: dev
+  Middlewares:
+    Log: false
+  ObjectName: test
+  ServerOpenDate: "2023-06-13 00:00:00"
+  Timezone: America/Sao_Paulo
 
-Mysql:
-  DataSource: root:123456@tcp(basic-tidb.tidb-cluster.svc.cluster.local:4000)/app?charset=utf8mb4&parseTime=true
+  Mysql:
+    DataSource: root:123456@tcp(basic-tidb.tidb-cluster.svc.cluster.local:4000)/app?charset=utf8mb4&parseTime=true
 
-Redis:
-  Host: redis-master:6379
-  Pass: game123456
-  Type: node
+  Redis:
+    Host: redis-master:6379
+    Pass: game123456
+    Type: node
 
-JwtAuth:
-  AccessSecret: ae0536f9-6450-4606-8e13-5a19ed505da0
-  AccessExpire: 2592000
-  BufferTime: 7200
-  MultiSite: false
+  JwtAuth:
+    AccessSecret: ae0536f9-6450-4606-8e13-5a19ed505da0
+    AccessExpire: 2592000
+    BufferTime: 7200
+    MultiSite: false
 
-AdminRpc:
-  Endpoints:
-    - admin-rpc:80
-  NonBlock: true
-  Timeout: 999999999
+  AdminRpc:
+    Endpoints:
+      - admin-rpc:80
+    NonBlock: true
+    Timeout: 999999999
