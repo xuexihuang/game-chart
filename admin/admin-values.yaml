@@ -1,8 +1,8 @@
 image:
-  repository: registry.cn-shenzhen.aliyuncs.com/huanglin_hub/admin
+  repository: registry.cn-shenzhen.aliyuncs.com/huanglin_hub/adminrefactor-api
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "k8s"
+  tag: "beta1.0"
 
 ingress:
   enabled: true

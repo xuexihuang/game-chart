@@ -1,16 +1,16 @@
-Name: admin.api
-Host: 0.0.0.0
-Port: 80
-
+Name: admin.rpc
+ListenOn: 0.0.0.0:80
 Mode: dev
 Middlewares:
-  Log: false
-ObjectName: test
-ServerOpenDate: "2023-06-13 00:00:00"
+  Stat: false
 Timezone: America/Sao_Paulo
 
 Mysql:
   DataSource: root:123456@tcp(basic-tidb.tidb-cluster.svc.cluster.local:4000)/app?charset=utf8mb4&parseTime=true
+
+Cache:
+  - Host: redis-master:6379
+    Pass: game123456
 
 Redis:
   Host: redis-master:6379
@@ -23,8 +23,15 @@ JwtAuth:
   BufferTime: 7200
   MultiSite: false
 
-AdminRpc:
-  Endpoints:
-    - admin-rpc:80
-  NonBlock: true
-  Timeout: 999999999
+SantQueue:
+  ClusterID: test-cluster
+  ClientID: game-api-1
+  Hosts: nats://nats-stream-node:4222
+
+Aws:
+  AppId: xxxxxxx
+  Secret: xxxxxxxx
+  Region: sa-east-1
+  OpenSearch:
+    Remote: false
+    Domain: http://es-node:9200
