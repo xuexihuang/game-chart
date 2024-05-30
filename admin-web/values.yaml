@@ -8,7 +8,7 @@ image:
   repository: registry.cn-shenzhen.aliyuncs.com/huanglin_hub/admin-web
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "k8s-test"
+  tag: "beta1.0"
 
 imagePullSecrets: []
 nameOverride: ""
