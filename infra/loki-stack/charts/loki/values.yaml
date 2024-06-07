@@ -1,5 +1,5 @@
 image:
-  repository: m.daocloud.io/grafana/loki
+  repository: m.daocloud.io/docker.io/grafana/loki
   tag: 2.6.1
   pullPolicy: IfNotPresent
 
