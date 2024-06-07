@@ -14,6 +14,7 @@ additionalPrometheusRulesMap:
               description: "Either MsgInsertRedisFailedCounter or MsgInsertMongoFailedCounter has increased in the last 5 minutes, indicating failures in message insert operations to Redis or MongoDB,maybe the redis or mongodb is crash."
 
 alertmanager:
+  enabled: false
   config:
     global:
       resolve_timeout: 5m
@@ -58,13 +59,13 @@ alertmanager:
     annotations: { }
     labels: { }
     hosts:
-      - openim4.server.top
+      - opengame4.server.top
     paths:
       - /
     tls:
-      - secretName: openim4tls
+      - secretName: opengame4tls
         hosts:
-          - openim4.server.top
+          - opengame4.server.top
 
 grafana:
   adminPassword: prom-operator
@@ -74,24 +75,24 @@ grafana:
     annotations: {}
     labels: {}
     hosts:
-      - openim2.server.top
+      - grafana.dev1.local
     path: /
     tls:
-      - secretName: openim2tls
+      - secretName: grafana-tls
         hosts:
-          - openim2.server.top
+          - grafana.dev1.local
 
 prometheus:
   ingress:
-    enabled: false
+    enabled: true
     ingressClassName: nginx
     annotations: {}
     labels: {}
     hosts:
-      - openim3.server.top
+      - prometheus.dev1.local
     paths:
       - /
     tls:
-      - secretName: openim3tls
+      - secretName: prometheus-tls
         hosts:
-          - openim3.server.top
+          - prometheus.dev1.local
