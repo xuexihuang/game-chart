@@ -6,7 +6,7 @@ metadata:
   name: {{ include "admin-rpc.fullname" . }}
 spec:
   endpoints:
-    - interval: 15s
+    - interval: 5s
       port: metrics-port
   selector:
     matchLabels:
