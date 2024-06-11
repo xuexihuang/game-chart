@@ -17,6 +17,7 @@ config:
     Host: redis-master:6379
     Pass: game123456
     Type: node
+    Key: redis-master:6379
 
   DevServer:
     Port: 90
