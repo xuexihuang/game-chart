@@ -24,6 +24,10 @@ config:
     BufferTime: 7200
     MultiSite: false
 
+  DevServer:
+    Port: 90
+    MetricsPath: /metrics
+    EnableMetrics: true
   AdminRpc:
     Endpoints:
       - admin-rpc:80

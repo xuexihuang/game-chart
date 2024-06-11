@@ -18,6 +18,11 @@ config:
     Pass: game123456
     Type: node
 
+  DevServer:
+    Port: 90
+    MetricsPath: /metrics
+    EnableMetrics: true
+
   JwtAuth:
     AccessSecret: ae0536f9-6450-4606-8e13-5a19ed505da0
     AccessExpire: 2592000
