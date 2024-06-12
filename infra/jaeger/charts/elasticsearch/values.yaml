@@ -554,12 +554,12 @@ master:
   containerSecurityContext:
     enabled: true
     seLinuxOptions: {}
-    runAsUser: 1001
-    runAsGroup: 1001
+    runAsUser: 0
+    runAsGroup: 0
     runAsNonRoot: false
     privileged: false
-    allowPrivilegeEscalation: false
-    readOnlyRootFilesystem: true
+    allowPrivilegeEscalation: true
+    readOnlyRootFilesystem: false
     capabilities:
       drop: ["ALL"]
     seccompProfile:
@@ -947,12 +947,12 @@ data:
   containerSecurityContext:
     enabled: true
     seLinuxOptions: {}
-    runAsUser: 1001
-    runAsGroup: 1001
+    runAsUser: 0
+    runAsGroup: 0
     runAsNonRoot: false
     privileged: false
-    allowPrivilegeEscalation: false
-    readOnlyRootFilesystem: true
+    allowPrivilegeEscalation: true
+    readOnlyRootFilesystem: false
     capabilities:
       drop: ["ALL"]
     seccompProfile:
@@ -1341,12 +1341,12 @@ coordinating:
   containerSecurityContext:
     enabled: true
     seLinuxOptions: {}
-    runAsUser: 1001
-    runAsGroup: 1001
+    runAsUser: 0
+    runAsGroup: 0
     runAsNonRoot: false
     privileged: false
-    allowPrivilegeEscalation: false
-    readOnlyRootFilesystem: true
+    allowPrivilegeEscalation: true
+    readOnlyRootFilesystem: false
     capabilities:
       drop: ["ALL"]
     seccompProfile:
@@ -1704,12 +1704,12 @@ ingest:
   containerSecurityContext:
     enabled: true
     seLinuxOptions: {}
-    runAsUser: 1001
-    runAsGroup: 1001
+    runAsUser: 0
+    runAsGroup: 0
     runAsNonRoot: false
     privileged: false
-    allowPrivilegeEscalation: false
-    readOnlyRootFilesystem: true
+    allowPrivilegeEscalation: true
+    readOnlyRootFilesystem: false
     capabilities:
       drop: ["ALL"]
     seccompProfile:
@@ -2435,12 +2435,12 @@ metrics:
   containerSecurityContext:
     enabled: true
     seLinuxOptions: {}
-    runAsUser: 1001
-    runAsGroup: 1001
+    runAsUser: 0
+    runAsGroup: 0
     runAsNonRoot: false
     privileged: false
-    allowPrivilegeEscalation: false
-    readOnlyRootFilesystem: true
+    allowPrivilegeEscalation: true
+    readOnlyRootFilesystem: false
     capabilities:
       drop: ["ALL"]
     seccompProfile:
