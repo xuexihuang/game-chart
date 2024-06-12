@@ -277,9 +277,9 @@ elasticsearch:
         value: "-Xmx20g -Xms20g"
     persistence:
       enabled: true
-      storageClass: nfs-client
+      storageClass: "nfs-client"
       accessModes: [ "ReadWriteOnce" ]
-      size: 5gb
+      size: 5Gi
   extraConfig:
     cluster.max_shards_per_node: 3000
   sysctlImage:
