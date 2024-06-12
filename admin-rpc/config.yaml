@@ -18,6 +18,11 @@ config:
     Pass: game123456
     Type: node
     Key: redis-master:6379
+  Telemetry:
+    Name: admin-rpc
+    Endpoint: http://jaeger-collector.kube-public.svc.cluster.local:14268/api/traces
+    Sampler: 1.0
+    Batcher: jaeger
 
   DevServer:
     Port: 90

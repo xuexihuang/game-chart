@@ -23,6 +23,11 @@ config:
     AccessExpire: 2592000
     BufferTime: 7200
     MultiSite: false
+  Telemetry:
+    Name: admin-api
+    Endpoint: http://jaeger-collector.kube-public.svc.cluster.local:14268/api/traces
+    Sampler: 1.0
+    Batcher: jaeger
 
   DevServer:
     Port: 90
