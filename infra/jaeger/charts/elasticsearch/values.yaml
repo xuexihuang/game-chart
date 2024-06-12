@@ -192,7 +192,7 @@ useIstioLabels: true
 ## @param image.debug Enable Elasticsearch image debug mode
 ##
 image:
-  registry: docker.io
+  registry: m.daocloud.io/docker.io
   repository: bitnami/elasticsearch
   tag: 8.13.2-debian-12-r0
   digest: ""
