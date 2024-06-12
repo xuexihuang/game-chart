@@ -6,8 +6,8 @@ global:
   imageRegistry:
 
 provisionDataStore:
-  cassandra: true
-  elasticsearch: false
+  cassandra: false
+  elasticsearch: true
   kafka: false
 
 networkPolicy:
@@ -89,7 +89,7 @@ allInOne:
 
 storage:
   # allowed values (cassandra, elasticsearch, grpc-plugin, badger, memory)
-  type: cassandra
+  type: elasticsearch
   cassandra:
     host: cassandra
     port: 9042
@@ -260,44 +260,44 @@ schema:
 
 # For configurable values of the elasticsearch if provisioned, please see:
 # https://github.com/bitnami/charts/tree/main/bitnami/elasticsearch
-elasticsearch: {}
+
 
 # Example that uses no auth:
-# elasticsearch:
-#   fullnameOverride: "elasticsearch"
-#   image:
-#     registry: ""
-#     repository: docker.io/bitnami/elasticsearch
-#     tag: ""
-#   master:
-#     masterOnly: false
-#     replicaCount: 3
-#     extraEnvVars:
-#       - name: ES_JAVA_OPTS
-#         value: "-Xmx20g -Xms20g"
-#     persistence:
-#       enabled: true
-#       storageClass: managed-premium
-#       accessModes: [ "ReadWriteOnce" ]
-#       size: 100gb
-#   extraConfig:
-#     cluster.max_shards_per_node: 3000
-#   sysctlImage:
-#     registry: ""
-#     repository: docker.io/bitnami/os-shell
-#     tag: 12-debian-12-r18
-#   volumePermissions:
-#     enabled: true
-#     image:
-#       registry: ""
-#       repository: docker.io/bitnami/os-shell
-#       tag: 12-debian-12-r18
-#   data:
-#     replicaCount: 0
-#   coordinating:
-#     replicaCount: 0
-#   ingest:
-#     replicaCount: 0
+elasticsearch:
+  fullnameOverride: "elasticsearch"
+  image:
+    registry: ""
+    repository: docker.io/bitnami/elasticsearch
+    tag: ""
+  master:
+    masterOnly: false
+    replicaCount: 1
+    extraEnvVars:
+      - name: ES_JAVA_OPTS
+        value: "-Xmx20g -Xms20g"
+    persistence:
+      enabled: true
+      storageClass: nfs-client
+      accessModes: [ "ReadWriteOnce" ]
+      size: 5gb
+  extraConfig:
+    cluster.max_shards_per_node: 3000
+  sysctlImage:
+    registry: ""
+    repository: docker.io/bitnami/os-shell
+    tag: 12-debian-12-r18
+  volumePermissions:
+    enabled: true
+    image:
+      registry: ""
+      repository: docker.io/bitnami/os-shell
+      tag: 12-debian-12-r18
+  data:
+    replicaCount: 0
+  coordinating:
+    replicaCount: 0
+  ingest:
+    replicaCount: 0
 
 ingester:
   enabled: false
@@ -676,14 +676,14 @@ query:
   replicaCount: 1
   service:
     annotations: {}
-    type: ClusterIP
+    type: NodePort
     # List of IP ranges that are allowed to access the load balancer (if supported)
     loadBalancerSourceRanges: []
     port: 80
     # Specify a custom target port (e.g. port of auth proxy)
     # targetPort: 8080
     # Specify a specific node port when type is NodePort
-    # nodePort: 32500
+    nodePort: 32500
   ingress:
     enabled: false
     # For Kubernetes >= 1.18 you should specify the ingress-controller via the field ingressClassName
