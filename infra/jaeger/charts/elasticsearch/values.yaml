@@ -20,7 +20,7 @@ global:
   ##   - myRegistryKeySecretName
   ##
   imagePullSecrets: []
-  storageClass: ""
+  storageClass: "nfs-client"
   elasticsearch:
     service:
       name: elasticsearch
