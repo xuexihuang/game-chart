@@ -556,7 +556,7 @@ master:
     seLinuxOptions: {}
     runAsUser: 1001
     runAsGroup: 1001
-    runAsNonRoot: true
+    runAsNonRoot: false
     privileged: false
     allowPrivilegeEscalation: false
     readOnlyRootFilesystem: true
@@ -949,7 +949,7 @@ data:
     seLinuxOptions: {}
     runAsUser: 1001
     runAsGroup: 1001
-    runAsNonRoot: true
+    runAsNonRoot: false
     privileged: false
     allowPrivilegeEscalation: false
     readOnlyRootFilesystem: true
@@ -1343,7 +1343,7 @@ coordinating:
     seLinuxOptions: {}
     runAsUser: 1001
     runAsGroup: 1001
-    runAsNonRoot: true
+    runAsNonRoot: false
     privileged: false
     allowPrivilegeEscalation: false
     readOnlyRootFilesystem: true
@@ -1706,7 +1706,7 @@ ingest:
     seLinuxOptions: {}
     runAsUser: 1001
     runAsGroup: 1001
-    runAsNonRoot: true
+    runAsNonRoot: false
     privileged: false
     allowPrivilegeEscalation: false
     readOnlyRootFilesystem: true
@@ -2437,7 +2437,7 @@ metrics:
     seLinuxOptions: {}
     runAsUser: 1001
     runAsGroup: 1001
-    runAsNonRoot: true
+    runAsNonRoot: false
     privileged: false
     allowPrivilegeEscalation: false
     readOnlyRootFilesystem: true
