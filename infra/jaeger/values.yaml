@@ -292,7 +292,7 @@ ingester:
   securityContext: {}
   annotations: {}
   image:
-    registry: ""
+    registry: "m.daocloud.io/docker.io"
     repository: jaegertracing/jaeger-ingester
     tag: ""
     digest: ""
@@ -355,7 +355,7 @@ agent:
   enabled: true
   annotations: {}
   image:
-    registry: ""
+    registry: "m.daocloud.io/docker.io"
     repository: jaegertracing/jaeger-agent
     tag: ""
     digest: ""
@@ -437,7 +437,7 @@ collector:
   enabled: true
   annotations: {}
   image:
-    registry: ""
+    registry: "m.daocloud.io/docker.io"
     repository: jaegertracing/jaeger-collector
     tag: ""
     digest: ""
@@ -614,7 +614,7 @@ query:
       #   cpu: 256m
       #   memory: 128Mi
     image:
-      registry: quay.io
+      registry: m.daocloud.io/quay.io
       repository: oauth2-proxy/oauth2-proxy
       tag: v7.6.0
       digest: ""
@@ -650,7 +650,7 @@ query:
   #        memory: 128Mi
   annotations: {}
   image:
-    registry: ""
+    registry: "m.daocloud.io/docker.io"
     repository: jaegertracing/jaeger-query
     tag: ""
     digest: ""
