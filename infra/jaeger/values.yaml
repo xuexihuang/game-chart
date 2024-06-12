@@ -267,7 +267,7 @@ elasticsearch:
   fullnameOverride: "elasticsearch"
   master:
     masterOnly: false
-    replicaCount: 1
+    replicaCount: 2
     extraEnvVars:
       - name: ES_JAVA_OPTS
         value: "-Xmx20g -Xms20g"
