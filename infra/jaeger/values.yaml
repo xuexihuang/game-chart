@@ -7,7 +7,7 @@ global:
 
 provisionDataStore:
   cassandra: false
-  elasticsearch: true
+  elasticsearch: false
   kafka: false
 
 networkPolicy:
