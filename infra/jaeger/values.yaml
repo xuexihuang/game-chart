@@ -484,7 +484,7 @@ collector:
     # httpPort: can accept spans directly from clients in jaeger.thrift format
     http:
       port: 14268
-      nodePort: 34268
+      # nodePort: 34268
     # can accept Zipkin spans in JSON or Thrift
     zipkin:
       {}
