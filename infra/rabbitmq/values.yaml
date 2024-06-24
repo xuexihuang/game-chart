@@ -513,7 +513,7 @@ configurationExistingSecret: ""
 ## Do not use simultaneously with `extraConfigurationExistingSecret`
 ##
 extraConfiguration: |-
-  #default_vhost = {{ .Release.Namespace }}-vhost
+  default_vhost = {{ .Release.Namespace }}-vhost
   #disk_free_limit.absolute = 50MB
 ## @param extraConfigurationExistingSecret Existing secret with the extra configuration to append to `configuration`.
 ## Must contain the key "extraConfiguration"
