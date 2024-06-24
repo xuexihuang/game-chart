@@ -18,7 +18,7 @@ global:
   ##   - myRegistryKeySecretName
   ##
   imagePullSecrets: []
-  storageClass: ""
+  storageClass: "nfs-client"
   ## Compatibility adaptations for Kubernetes platforms
   ##
   compatibility:
@@ -40,7 +40,7 @@ global:
 ## @param image.debug Set to true if you would like to see extra information on logs
 ##
 image:
-  registry: docker.io
+  registry: m.daocloud.io/docker.io
   repository: bitnami/rabbitmq
   tag: 3.13.3-debian-12-r0
   digest: ""
@@ -143,11 +143,11 @@ auth:
   ## @param auth.username RabbitMQ application username
   ## ref: https://github.com/bitnami/containers/tree/main/bitnami/rabbitmq#environment-variables
   ##
-  username: user
+  username: admin
   ## @param auth.password RabbitMQ application password
   ## ref: https://github.com/bitnami/containers/tree/main/bitnami/rabbitmq#environment-variables
   ##
-  password: ""
+  password: "admin123456"
   ## @param auth.securePassword Whether to set the RabbitMQ password securely. This is incompatible with loading external RabbitMQ definitions and 'true' when not setting the auth.password parameter.
   ## ref: https://github.com/bitnami/containers/tree/main/bitnami/rabbitmq#environment-variables
   ##
@@ -965,7 +965,7 @@ persistence:
   ## @param persistence.size PVC Storage Request for RabbitMQ data volume
   ## If you change this value, you might have to adjust `rabbitmq.diskFreeLimit` as well
   ##
-  size: 8Gi
+  size: 2Gi
   ## @param persistence.annotations Persistence annotations. Evaluated as a template
   ## Example:
   ## annotations:
@@ -998,7 +998,7 @@ persistentVolumeClaimRetentionPolicy:
 service:
   ## @param service.type Kubernetes Service type
   ##
-  type: ClusterIP
+  type: NodePort
   ## @param service.portEnabled Amqp port. Cannot be disabled when `auth.tls.enabled` is `false`. Listener can be disabled with `listeners.tcp = none`.
   ##
   portEnabled: true
@@ -1051,12 +1051,12 @@ service:
   ## @param service.nodePorts.metrics Node port for RabbitMQ Prometheues metrics
   ##
   nodePorts:
-    amqp: ""
-    amqpTls: ""
-    dist: ""
-    manager: ""
-    epmd: ""
-    metrics: ""
+    amqp: "30672"
+    amqpTls: "30671"
+    dist: "32567"
+    manager: "31567"
+    epmd: "30419"
+    metrics: "30369"
   ## @param service.extraPorts Extra ports to expose in the service
   ## E.g.:
   ## extraPorts:
@@ -1232,7 +1232,7 @@ ingress:
 networkPolicy:
   ## @param networkPolicy.enabled Specifies whether a NetworkPolicy should be created
   ##
-  enabled: true
+  enabled: false
   ## @param networkPolicy.kubeAPIServerPorts [array] List of possible endpoints to kube-apiserver (limit to your cluster settings to increase security)
   ##
   kubeAPIServerPorts: [443, 6443, 8443]
