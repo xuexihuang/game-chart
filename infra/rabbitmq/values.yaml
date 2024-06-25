@@ -1232,7 +1232,7 @@ ingress:
 networkPolicy:
   ## @param networkPolicy.enabled Specifies whether a NetworkPolicy should be created
   ##
-  enabled: false
+  enabled: true
   ## @param networkPolicy.kubeAPIServerPorts [array] List of possible endpoints to kube-apiserver (limit to your cluster settings to increase security)
   ##
   kubeAPIServerPorts: [443, 6443, 8443]
