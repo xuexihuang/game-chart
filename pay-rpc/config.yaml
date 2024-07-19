@@ -1,0 +1,19 @@
+config:
+  Name: pay.rpc
+  ListenOn: 0.0.0.0:8080
+  Timezone: America/Sao_Paulo
+  MqConfig:
+    Username: admin
+    Password: admin123456
+    Host: 116.205.175.233
+    Port: 5674
+    VHost: my_vhost
+    Exchange: game_logic
+    SenderConf:
+      - Event: pay_recharge_callback
+        RouteKey: pay_recharge_callback
+      - Event: pay_withdrawal_callback
+        RouteKey: pay_withdrawal_callback
+
+  Mysql:
+    DataSource: root:123456@tcp(basic-tidb.tidb-cluster.svc.cluster.local:4000)/dev_game?charset=utf8mb4&parseTime=true
