@@ -17,10 +17,7 @@ ingress:
       paths:
         - path: /api(/|$)(.*)
           pathType: ImplementationSpecific
-  tls:
-    - secretName: developAdminTls
-      hosts:
-        - admin.develop.local
+  tls: []
   #  - secretName: chart-example-tls
   #    hosts:
   #      - chart-example.local
