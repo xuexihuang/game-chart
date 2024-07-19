@@ -1,6 +1,6 @@
 config:
   Name: pay.rpc
-  ListenOn: 0.0.0.0:8080
+  ListenOn: 0.0.0.0:80
   Timezone: America/Sao_Paulo
   MqConfig:
     Username: admin
