@@ -24,6 +24,7 @@ config:
     Host: redis-master:6379
     Pass: game123456
     Type: node
+    Key: redis-master
 
   Log:
     ServiceName: user-rpc
