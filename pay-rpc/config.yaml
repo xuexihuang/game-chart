@@ -17,3 +17,10 @@ config:
 
   Mysql:
     DataSource: root:123456@tcp(basic-tidb.tidb-cluster.svc.cluster.local:4000)/dev_game?charset=utf8mb4&parseTime=true
+  PayConfig:
+    CallBackHost: "http://pay-api"
+    IsPro: false
+
+  Snowflake:
+    WorkerID: 10
+    DatacenterID: 10
