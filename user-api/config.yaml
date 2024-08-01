@@ -1,62 +1,66 @@
 config:
-  Name: usercenter
+  Name: user.api
   Host: 0.0.0.0
   Port: 80
-  MaxBytes: 10485760
-  Mode: dev
+  Timeout: 60000
 
-  JwtAuth:
-    AccessSecret: ae0536f9-6450-4606-8e13-5a19ed505da0
-    AccessExpire: 2592000
+  Mode: dev
+  Verbose: false
+  Middlewares:
+    Log: false
+  ObjectName: test
+  ServerOpenDate: "2023-06-13 00:00:00"
+  Timezone: America/Sao_Paulo
+
+  MaxBytes: 10485760
+
+  DevServer:
+    Port: 90
+    MetricsPath: /metrics
+    EnableMetrics: true
+
+  Telemetry:
+    Name: user-api
+    Endpoint: http://jaeger-collector.kube-public.svc.cluster.local:14268/api/traces
+    Sampler: 1.0
+    Batcher: jaeger
+
+  Mysql:
+    DataSource: root:123456@tcp(basic-tidb.tidb-cluster.svc.cluster.local:4000)/dev_game?charset=utf8mb4&parseTime=true
 
   Redis:
     Host: redis-master:6379
     Pass: game123456
     Type: node
 
-  Aws:
-    AppId: xxxxxxxx
-    Secret: xxxxxxxxxx
-    Region: sa-east-1
-    OpenSearch:
-      Remote: false
-      Domain: http://es-node:9200
+  JwtAuth:
+    AccessSecret: ae0536f9-6450-4606-8e13-5a19ed505da0
+    AccessExpire: 2592000
+    BufferTime: 7200
+    MultiSite: false
 
-
+  AdminRpc:
+    Endpoints:
+      - admin-rpc:80
+    NonBlock: true
+    Timeout: 999999999
+    Middlewares:
+      Duration: false
+  PayRpc:
+    Endpoints:
+      - pay-rpc:80
+    NonBlock: true
+    Timeout: 999999999
+    Middlewares:
+      Duration: false
   UserRpc:
-    #Target: k8s://dev1-game/user-rpc:80
     Endpoints:
       - user-rpc:80
     NonBlock: true
+    Timeout: 999999999
+    Middlewares:
+      Duration: false
 
-  BuryPointRpc:
-    #Target: k8s://dev1-game/burypoint-rpc:80
-    Endpoints:
-      - burypoint-rpc:80
-    NonBlock: true
+  AggreApi:
+    Addr: http://gameAggreApi:80
 
-  GameRpc:
-    #Target: k8s://dev1-game/game-rpc:80
-    Endpoints:
-      - game-rpc:80
-    NonBlock: true
-
-  SystemRpc:
-    #Target: k8s://dev1-game/system-rpc:80
-    Endpoints:
-      - system-rpc:80
-    NonBlock: true
-
-  TransRpc:
-    #Target: k8s://dev1-game/transaction-rpc:80
-    Endpoints:
-      - transaction-rpc:80
-    NonBlock: true
-
-  Log:
-    ServiceName: user-api
-    Level: error
-    Mode: console
-    KeepDays: 3
-
-  Timezone: America/Sao_Paulo

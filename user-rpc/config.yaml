@@ -2,69 +2,80 @@ config:
   Name: user.rpc
   ListenOn: 0.0.0.0:80
   Prod: false
-  Timeout: 99999
-
+  Timeout: 30000
   Mode: dev
-
-
-  JwtAuth:
-    AccessSecret: ae0536f9-6450-4606-8e13-5a19ed505da0
-    AccessExpire: 2592000
-
-  Snowflake:
-    WorkerID: 1
-    DatacenterID: 1
-
+  Middlewares:
+    Stat: false
+  Timezone: America/Sao_Paulo
+  MqConfig:
+    Username: admin
+    Password: admin123456
+    Host: 116.205.175.233
+    Port: 5674
+    VHost: my_vhost
+    Exchange: game_logic
+    SenderConf:
+      - Event: bet_finish
+        RouteKey: bet_gameCashBack.bet_promotionCommissionReward.bet_activityReward.vip_upgradeReward
   Mysql:
-    DataSource: root:123456@tcp(mysql:3306)/newfoguetebet?charset=utf8mb4&parseTime=true
+    DataSource: root:123456@tcp(basic-tidb.tidb-cluster.svc.cluster.local:4000)/dev_game?charset=utf8mb4&parseTime=true
 
   Redis:
     Host: redis-master:6379
     Pass: game123456
     Type: node
 
-  Cache:
-    - Host: redis-master:6379
-      Pass: game123456
+  Log:
+    ServiceName: user-rpc
+    Level: error
+    Mode: console
+
+  Snowflake:
+    WorkerID: 1
+    DatacenterID: 1
+
+  JwtAuth:
+    AccessSecret: ae0536f9-6450-4606-8e13-5a19ed505da0
+    AccessExpire: 2592000
+
+  DevServer:
+    Port: 90
+    MetricsPath: /metrics
+    EnableMetrics: true
+
+  Telemetry:
+    Name: user-rpc
+    Endpoint: http://jaeger-collector.kube-public.svc.cluster.local:14268/api/traces
+    Sampler: 1.0
+    Batcher: jaeger
+
+  SantQueue:
+    ClusterID: test-cluster
+    ClientID: test-1
+    Hosts: nats://192.168.124.111:14222,nats://192.168.124.111:14223
 
   Aws:
-    AppId: xxxxxxxx
+    AppId: xxxxxxx
     Secret: xxxxxxxx
     Region: sa-east-1
     OpenSearch:
       Remote: false
-      Domain: http://es-node:9200
-  Email:
-    From: no-reply@foguetebet.com
-    Host: smtpout.secureserver.net
-    Port: 465
-    Password: MFGLr6UPvjpyDgGK
+      Domain: http://192.168.124.54:9200
 
-  TPAuth:
-    Google:
-      ClientID: aaaa
-      ClientSecret: bbbbb
-      RedirectURL: ccccc
+  GameConfig:
+    SecretKey: ""
 
-  BuryPointRpc:
-    #Target: k8s://dev1-game/burypoint-rpc:80
+  AdminRpc:
     Endpoints:
-      - burypoint-rpc:80
+      - admin-rpc:80
     NonBlock: true
-
-  SystemRpc:
-    #Target: k8s://dev1-game/system-rpc:80
+    Timeout: 999999999
+    Middlewares:
+      Duration: false
+  PayRpc:
     Endpoints:
-      - system-rpc:80
+      - pay-rpc:80
     NonBlock: true
-
-  Log:
-    ServiceName: user-rpc
-    Level: debug
-    Mode: console
-    KeepDays: 3
-
-  SantQueue:
-    ClusterID: test-cluster
-    ClientID: game-api-1
-    Hosts: nats://nats-stream-node:4222
+    Timeout: 999999999
+    Middlewares:
+      Duration: false
