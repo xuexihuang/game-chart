@@ -1,5 +1,5 @@
 image:
-  repository: registry.cn-shenzhen.aliyuncs.com/huanglin_hub/mq
+  repository: registry.cn-shenzhen.aliyuncs.com/huanglin_hub/mqrefactor
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "k8s"
+  tag: "dev8.01.3"

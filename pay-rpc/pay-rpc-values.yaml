@@ -2,4 +2,4 @@ image:
   repository: registry.cn-shenzhen.aliyuncs.com/huanglin_hub/payrefactor-rpc
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "dev7.19.2"
+  tag: "dev8.01.3"
