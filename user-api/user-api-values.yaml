@@ -13,11 +13,14 @@ ingress:
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
   hosts:
-    - host:
+    - host: game.dev1.local
       paths:
         - path: /api/user(/|$)(.*)
           pathType: ImplementationSpecific
-  tls: []
+  tls:
+    - secretName: gametls
+      hosts:
+        - game.dev1.local
   #  - secretName: chart-example-tls
   #    hosts:
   #      - chart-example.local

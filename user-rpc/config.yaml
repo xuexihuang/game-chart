@@ -18,7 +18,7 @@ config:
       - Event: bet_finish
         RouteKey: bet_gameCashBack.bet_promotionCommissionReward.bet_activityReward.vip_upgradeReward
   Mysql:
-    DataSource: root:123456@tcp(basic-tidb.tidb-cluster.svc.cluster.local:4000)/dev_game?charset=utf8mb4&parseTime=true
+    DataSource: root:123456@tcp(basic-tidb.tidb-cluster.svc.cluster.local:4000)/new_game?charset=utf8mb4&parseTime=true
 
   Redis:
     Host: redis-master:6379
