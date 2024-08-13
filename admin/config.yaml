@@ -7,6 +7,9 @@ config:
   Middlewares:
     Log: false
   ObjectName: test
+  AccountId: 6eb54c27ea0a6d8a2550ab9fb45d4da8
+  AccessKeyId: 8a34ed2b1cf885574d861f6044a01ddf
+  AccessKeySecret: 0a142b03fdef53222251408ecb86b8eda80835fa8582e99bd0ee9b6f00dc2a77
   ServerOpenDate: "2023-06-13 00:00:00"
   Timezone: America/Sao_Paulo
 
