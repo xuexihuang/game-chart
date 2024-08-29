@@ -15,7 +15,7 @@ ingress:
   hosts:
     - host:
       paths:
-        - path: /api/user(/|$)(.*)
+        - path: /userApi(/|$)(.*)
           pathType: ImplementationSpecific
   tls: []
   #  - secretName: chart-example-tls
