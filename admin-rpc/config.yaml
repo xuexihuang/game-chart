@@ -47,3 +47,10 @@ config:
     OpenSearch:
       Remote: false
       Domain: http://es-node:9200
+  UserRpc:
+    Endpoints:
+      - user-rpc:80
+    NonBlock: true
+    Timeout: 999999999
+    Middlewares:
+      Duration: false

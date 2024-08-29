@@ -22,7 +22,7 @@ config:
   MqConfig:
     Username: admin
     Password: admin123456
-    Host: 116.205.175.233
+    Host: 192.168.124.69
     Port: 5674
     VHost: my_vhost
     Exchange: game_logic
@@ -55,8 +55,8 @@ config:
       - Name: VipUpgradeReward
         AutoAck: false
         Describe: "vip升级奖励,逻辑是调用user-rpc去更新钱包信息"
-        BindRouteKey: "#.vip_upgradeReward.#"
-        Consumer: VipUpgradeReward
+        BindRouteKey: "#.vip_upgrade.#"
+        Consumer: VipUpgrade
       - Name: BetGameCashBack
         AutoAck: false
         Describe: "游戏现金返水,逻辑是调用user-rpc去更新钱包信息,游戏返水信息"
@@ -77,11 +77,6 @@ config:
         Describe: "注册奖励,逻辑是调用user-rpc去更新钱包信息"
         BindRouteKey: "#.register_selfReward.#"
         Consumer: RegisterSelfReward
-      - Name: RegisterPromotionCommissionReward
-        AutoAck: false
-        Describe: "注册推广佣金奖励,逻辑是调用user-rpc去更新钱包信息,佣金记录信息"
-        BindRouteKey: "#.register_promotionCommissionReward.#"
-        Consumer: RegisterPromotionCommissionReward
       - Name: SignInSelfReward
         AutoAck: false
         Describe: "签到奖励,逻辑是调用user-rpc去更新钱包信息"
@@ -98,11 +93,11 @@ config:
       - Event: pay_withdrawal_callback #发送方是pay-rpc
         RouteKey: pay_withdrawal_callback
       - Event: recharge_finish # 发送方是mq-rpc
-        RouteKey: recharge_selfReward.recharge_promotionCommissionReward.recharge_activityReward.vip_upgradeReward
+        RouteKey: recharge_selfReward.recharge_promotionCommissionReward.recharge_activityReward.vip_upgrade
       - Event: bet_finish #发送方是user-rpc
-        RouteKey: bet_gameCashBack.bet_promotionCommissionReward.bet_activityReward.vip_upgradeReward
+        RouteKey: bet_gameCashBack.bet_promotionCommissionReward.bet_activityReward.vip_upgrade
       - Event: register_finish # 发送方是user-rpc
-        RouteKey: register_selfReward.register_promotionCommissionReward
+        RouteKey: register_selfReward
       - Event: signIn_finish #发送方是user-rpc
         RouteKey: signIn_selfReward
       - Event: downLoad_finish #发送方是user-rpc
