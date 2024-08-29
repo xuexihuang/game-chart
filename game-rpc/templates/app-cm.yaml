@@ -1,9 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: game-rpc-cm
-data:
-  config.yaml: |+
-    {{- with .Values.config }}
-        {{- toYaml . | nindent 4 }}
-    {{- end }}
