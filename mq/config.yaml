@@ -28,62 +28,62 @@ config:
     Exchange: game_logic
     QueuesConf:
       - Name: PayRechargeCallback
-        AutoAck: false
+        AutoAck: true
         Describe: "充值回调,逻辑是调用user-rpc去更新订单状态钱包状态vip等级信息，然后发送mq消息recharge_finish"
         BindRouteKey: "#.pay_recharge_callback.#"
         Consumer: PayRechargeCallback
       - Name: PayWithdrawCallback
-        AutoAck: false
+        AutoAck: true
         Describe: "提现回调,逻辑是调用user-rpc去更新订单状态钱包状态"
         BindRouteKey: "#.pay_withdrawal_callback.#"
         Consumer: PayWithdrawCallback
       - Name: RechargeSelfReward
-        AutoAck: false
+        AutoAck: true
         Describe: "充值奖励,逻辑是调用user-rpc去更新钱包信息"
         BindRouteKey: "#.recharge_selfReward.#"
         Consumer: RechargeSelfReward
       - Name: RechargePromotionCommissionReward
-        AutoAck: false
+        AutoAck: true
         Describe: "充值推广佣金奖励,逻辑是调用user-rpc去更新钱包信息,佣金记录信息"
         BindRouteKey: "#.recharge_promotionCommissionReward.#"
         Consumer: RechargePromotionCommissionReward
       - Name: RechargeActivityReward
-        AutoAck: false
+        AutoAck: true
         Describe: "充值活动奖励,逻辑是调用user-rpc去更新钱包信息,活动奖励信息"
         BindRouteKey: "#.recharge_activityReward.#"
         Consumer: RechargeActivityReward
       - Name: VipUpgradeReward
-        AutoAck: false
+        AutoAck: true
         Describe: "vip升级奖励,逻辑是调用user-rpc去更新钱包信息"
         BindRouteKey: "#.vip_upgrade.#"
         Consumer: VipUpgrade
       - Name: BetGameCashBack
-        AutoAck: false
+        AutoAck: true
         Describe: "游戏现金返水,逻辑是调用user-rpc去更新钱包信息,游戏返水信息"
         BindRouteKey: "#.bet_gameCashBack.#"
         Consumer: BetGameCashBack
       - Name: BetPromotionCommissionReward
-        AutoAck: false
+        AutoAck: true
         Describe: "投注推广佣金奖励,逻辑是调用user-rpc去更新钱包信息,佣金记录信息"
         BindRouteKey: "#.bet_promotionCommissionReward.#"
         Consumer: BetPromotionCommissionReward
       - Name: BetActivityReward
-        AutoAck: false
+        AutoAck: true
         Describe: "投注活动奖励,逻辑是调用user-rpc去更新钱包信息,活动奖励信息"
         BindRouteKey: "#.bet_activityReward.#"
         Consumer: BetActivityReward
       - Name: RegisterSelfReward
-        AutoAck: false
+        AutoAck: true
         Describe: "注册奖励,逻辑是调用user-rpc去更新钱包信息"
         BindRouteKey: "#.register_selfReward.#"
         Consumer: RegisterSelfReward
       - Name: SignInSelfReward
-        AutoAck: false
+        AutoAck: true
         Describe: "签到奖励,逻辑是调用user-rpc去更新钱包信息"
         BindRouteKey: "#.signIn_selfReward.#"
         Consumer: SignInSelfReward
       - Name: DownLoadSelfReward
-        AutoAck: false
+        AutoAck: true
         Describe: "下载奖励,逻辑是调用user-rpc去更新钱包信息"
         BindRouteKey: "#.downLoad_selfReward.#"
         Consumer: DownLoadSelfReward
@@ -92,7 +92,7 @@ config:
         RouteKey: pay_recharge_callback
       - Event: pay_withdrawal_callback #发送方是pay-rpc
         RouteKey: pay_withdrawal_callback
-      - Event: recharge_finish # 发送方是mq-rpc
+      - Event: recharge_finish # 发送方是user-rpc
         RouteKey: recharge_selfReward.recharge_promotionCommissionReward.recharge_activityReward.vip_upgrade
       - Event: bet_finish #发送方是user-rpc
         RouteKey: bet_gameCashBack.bet_promotionCommissionReward.bet_activityReward.vip_upgrade
