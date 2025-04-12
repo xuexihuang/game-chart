@@ -6,7 +6,7 @@ global:
   imageRegistry:
 
 provisionDataStore:
-  cassandra: false
+  cassandra: true
   elasticsearch: false
   kafka: false
 
@@ -49,6 +49,7 @@ allInOne:
   #   }
   serviceAccount:
     annotations: {}
+    automountServiceAccountToken: true
   service:
     headless: true
     collector:
@@ -86,10 +87,18 @@ allInOne:
   #     cpu: 256m
   #     memory: 128Mi
   nodeSelector: {}
+  tolerations: []
+  affinity: {}
+  topologySpreadContraints: []
+  podSecurityContext:
+    runAsUser: 10001
+    runAsGroup: 10001
+    fsGroup: 10001
+  securityContext: {}
 
 storage:
   # allowed values (cassandra, elasticsearch, grpc-plugin, badger, memory)
-  type: elasticsearch
+  type: cassandra
   cassandra:
     host: cassandra
     port: 9042
@@ -223,6 +232,7 @@ kafka:
 # use by Jaeger
 schema:
   annotations: {}
+  tolerations: []
   image:
     registry: ""
     repository: jaegertracing/jaeger-cassandra-schema
@@ -247,6 +257,7 @@ schema:
   podLabels: {}
   securityContext: {}
   podSecurityContext: {}
+  nodeSelector: {}
   ## Deadline for cassandra schema creation job
   activeDeadlineSeconds: 300
   extraEnv:
@@ -305,7 +316,7 @@ ingester:
   securityContext: {}
   annotations: {}
   image:
-    registry: "m.daocloud.io/docker.io"
+    registry: ""
     repository: jaegertracing/jaeger-ingester
     tag: ""
     digest: ""
@@ -343,6 +354,7 @@ ingester:
   nodeSelector: {}
   tolerations: []
   affinity: {}
+  topologySpreadContraints: []
   podAnnotations: {}
   ## Additional pod labels
   ## ref: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
@@ -368,7 +380,7 @@ agent:
   enabled: true
   annotations: {}
   image:
-    registry: "m.daocloud.io/docker.io"
+    registry: ""
     repository: jaegertracing/jaeger-agent
     tag: ""
     digest: ""
@@ -450,7 +462,7 @@ collector:
   enabled: true
   annotations: {}
   image:
-    registry: "m.daocloud.io/docker.io"
+    registry: ""
     repository: jaegertracing/jaeger-collector
     tag: ""
     digest: ""
@@ -475,7 +487,7 @@ collector:
     loadBalancerIP: ""
     # List of IP ranges that are allowed to access the load balancer (if supported)
     loadBalancerSourceRanges: []
-    type: NodePort
+    type: ClusterIP
     # Cluster IP address to assign to service. Set to None to make service headless
     clusterIP: ""
     grpc:
@@ -484,7 +496,7 @@ collector:
     # httpPort: can accept spans directly from clients in jaeger.thrift format
     http:
       port: 14268
-      # nodePort: 34268
+      # nodePort:
     # can accept Zipkin spans in JSON or Thrift
     zipkin:
       {}
@@ -501,6 +513,9 @@ collector:
         # name: otlp-http
         # port: 4318
         # nodePort:
+    admin:
+      name: admin
+      targetPort: admin
   ingress:
     enabled: false
     # For Kubernetes >= 1.18 you should specify the ingress-controller via the field ingressClassName
@@ -544,6 +559,7 @@ collector:
   nodeSelector: {}
   tolerations: []
   affinity: {}
+  topologySpreadContraints: []
   podAnnotations: {}
   ## Additional pod labels
   ## ref: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
@@ -627,7 +643,7 @@ query:
       #   cpu: 256m
       #   memory: 128Mi
     image:
-      registry: m.daocloud.io/quay.io
+      registry: quay.io
       repository: oauth2-proxy/oauth2-proxy
       tag: v7.6.0
       digest: ""
@@ -663,7 +679,7 @@ query:
   #        memory: 128Mi
   annotations: {}
   image:
-    registry: "m.daocloud.io/docker.io"
+    registry: ""
     repository: jaegertracing/jaeger-query
     tag: ""
     digest: ""
@@ -676,14 +692,17 @@ query:
   replicaCount: 1
   service:
     annotations: {}
-    type: NodePort
+    type: ClusterIP
     # List of IP ranges that are allowed to access the load balancer (if supported)
     loadBalancerSourceRanges: []
     port: 80
     # Specify a custom target port (e.g. port of auth proxy)
     # targetPort: 8080
     # Specify a specific node port when type is NodePort
-    nodePort: 32500
+    # nodePort: 32500
+    admin:
+      name: admin
+      targetPort: admin
   ingress:
     enabled: false
     # For Kubernetes >= 1.18 you should specify the ingress-controller via the field ingressClassName
@@ -724,6 +743,7 @@ query:
   nodeSelector: {}
   tolerations: []
   affinity: {}
+  topologySpreadContraints: []
   podAnnotations: {}
   ## Additional pod labels
   ## ref: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
@@ -775,6 +795,8 @@ query:
 
 spark:
   enabled: false
+  securityContext: {}
+  podSecurityContext: {}
   annotations: {}
   image:
     registry: ""

@@ -268,7 +268,11 @@ We truncate at 63 chars because some Kubernetes name fields are limited to this 
 */}}
 {{- define "elasticsearch.client.url" -}}
 {{- $port := .Values.storage.elasticsearch.port | toString -}}
-{{- printf "%s://%s:%s" .Values.storage.elasticsearch.scheme .Values.storage.elasticsearch.host $port }}
+{{- $host := .Values.storage.elasticsearch.host }}
+{{- if .Values.provisionDataStore.elasticsearch }}
+{{- $host = printf "%s-elasticsearch" .Release.Name }}
+{{- end }}
+{{- printf "%s://%s:%s" .Values.storage.elasticsearch.scheme $host $port }}
 {{- end -}}
 
 {{- define "jaeger.hotrod.tracing.host" -}}
@@ -408,16 +412,6 @@ memory related environment variables
 {{- end }}
 {{- end -}}
 
-{{/*
-allInOne currently only supports memory/badger storage type.
-*/}}
-{{- define "allInOne.storage.type" -}}
-{{ $type := .Values.storage.type }}
-{{- if or (eq $type "memory") (eq $type "badger") -}}
-{{ .Values.storage.type }}
-{{- end -}}
-{{- end -}}
-
 
 {{/*
 Cassandra, Elasticsearch, or grpc-plugin, badger, memory related environment variables depending on which is used
@@ -427,7 +421,7 @@ Cassandra, Elasticsearch, or grpc-plugin, badger, memory related environment var
 {{ include "cassandra.env" . }}
 {{- else if eq .Values.storage.type "elasticsearch" -}}
 {{ include "elasticsearch.env" . }}
-{{- else if eq .Values.storage.type "grpc-plugin" -}}
+{{- else if or (eq .Values.storage.type "grpc-plugin") (eq .Values.storage.type "grpc") -}}
 {{ include "grpcPlugin.env" . }}
 {{- else if eq .Values.storage.type "badger" -}}
 {{ include "badger.env" . }}
@@ -721,6 +715,18 @@ Create image name for hotrod image
 */}}
 {{- define "hotrod.image" -}}
 {{- include "renderImage" ( dict "imageRoot" .Values.hotrod.image "context" $ ) -}}
+{{- end -}}
+
+{{/*
+Define curl image declaration
+*/}}
+{{- define "curl.image" -}}
+{{- $image := "curlimages/curl" -}}
+{{- if .Values.global.imageRegistry -}}
+{{ .Values.global.imageRegistry }}/{{ $image }}
+{{- else -}}
+{{ $image }}
+{{- end -}}
 {{- end -}}
 
 {{/*

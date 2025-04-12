@@ -20,7 +20,7 @@ global:
   ##   - myRegistryKeySecretName
   ##
   imagePullSecrets: []
-  storageClass: "nfs-client"
+  storageClass: ""
   elasticsearch:
     service:
       name: elasticsearch
@@ -192,7 +192,7 @@ useIstioLabels: true
 ## @param image.debug Enable Elasticsearch image debug mode
 ##
 image:
-  registry: m.daocloud.io/docker.io
+  registry: docker.io
   repository: bitnami/elasticsearch
   tag: 8.13.2-debian-12-r0
   digest: ""
@@ -554,12 +554,12 @@ master:
   containerSecurityContext:
     enabled: true
     seLinuxOptions: {}
-    runAsUser: 0
-    runAsGroup: 0
-    runAsNonRoot: false
+    runAsUser: 1001
+    runAsGroup: 1001
+    runAsNonRoot: true
     privileged: false
-    allowPrivilegeEscalation: true
-    readOnlyRootFilesystem: false
+    allowPrivilegeEscalation: false
+    readOnlyRootFilesystem: true
     capabilities:
       drop: ["ALL"]
     seccompProfile:
@@ -947,12 +947,12 @@ data:
   containerSecurityContext:
     enabled: true
     seLinuxOptions: {}
-    runAsUser: 0
-    runAsGroup: 0
-    runAsNonRoot: false
+    runAsUser: 1001
+    runAsGroup: 1001
+    runAsNonRoot: true
     privileged: false
-    allowPrivilegeEscalation: true
-    readOnlyRootFilesystem: false
+    allowPrivilegeEscalation: false
+    readOnlyRootFilesystem: true
     capabilities:
       drop: ["ALL"]
     seccompProfile:
@@ -1341,12 +1341,12 @@ coordinating:
   containerSecurityContext:
     enabled: true
     seLinuxOptions: {}
-    runAsUser: 0
-    runAsGroup: 0
-    runAsNonRoot: false
+    runAsUser: 1001
+    runAsGroup: 1001
+    runAsNonRoot: true
     privileged: false
-    allowPrivilegeEscalation: true
-    readOnlyRootFilesystem: false
+    allowPrivilegeEscalation: false
+    readOnlyRootFilesystem: true
     capabilities:
       drop: ["ALL"]
     seccompProfile:
@@ -1704,12 +1704,12 @@ ingest:
   containerSecurityContext:
     enabled: true
     seLinuxOptions: {}
-    runAsUser: 0
-    runAsGroup: 0
-    runAsNonRoot: false
+    runAsUser: 1001
+    runAsGroup: 1001
+    runAsNonRoot: true
     privileged: false
-    allowPrivilegeEscalation: true
-    readOnlyRootFilesystem: false
+    allowPrivilegeEscalation: false
+    readOnlyRootFilesystem: true
     capabilities:
       drop: ["ALL"]
     seccompProfile:
@@ -2435,12 +2435,12 @@ metrics:
   containerSecurityContext:
     enabled: true
     seLinuxOptions: {}
-    runAsUser: 0
-    runAsGroup: 0
-    runAsNonRoot: false
+    runAsUser: 1001
+    runAsGroup: 1001
+    runAsNonRoot: true
     privileged: false
-    allowPrivilegeEscalation: true
-    readOnlyRootFilesystem: false
+    allowPrivilegeEscalation: false
+    readOnlyRootFilesystem: true
     capabilities:
       drop: ["ALL"]
     seccompProfile:
@@ -2588,7 +2588,7 @@ volumePermissions:
   ## @param volumePermissions.image.pullSecrets Init container volume-permissions image pull secrets
   ##
   image:
-    registry: m.daocloud.io/docker.io
+    registry: docker.io
     repository: bitnami/os-shell
     tag: 12-debian-12-r18
     digest: ""
@@ -2635,7 +2635,7 @@ sysctlImage:
   ## @param sysctlImage.pullPolicy Kernel settings modifier image pull policy
   ## @param sysctlImage.pullSecrets Kernel settings modifier image pull secrets
   ##
-  registry: m.daocloud.io/docker.io
+  registry: docker.io
   repository: bitnami/os-shell
   tag: 12-debian-12-r18
   digest: ""
