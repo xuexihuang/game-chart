@@ -75,24 +75,28 @@ grafana:
     annotations: {}
     labels: {}
     hosts:
-      - grafana.dev1.local
+      - grafana.game360.club
     path: /
-    tls:
-      - secretName: grafana-tls
-        hosts:
-          - grafana.dev1.local
+    tls: []
 
 prometheus:
+  prometheusSpec:
+    storageSpec:
+      volumeClaimTemplate:
+        spec:
+          storageClassName: nfs-client
+          accessModes: ["ReadWriteOnce"]
+          resources:
+            requests:
+              storage: 5Gi
+        selector: {}
   ingress:
     enabled: true
     ingressClassName: nginx
     annotations: {}
     labels: {}
     hosts:
-      - prometheus.dev1.local
+      - prometheus.game360.club
     paths:
       - /
-    tls:
-      - secretName: prometheus-tls
-        hosts:
-          - prometheus.dev1.local
+    tls: []

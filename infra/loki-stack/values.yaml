@@ -1,5 +1,5 @@
 test_pod:
-  enabled: false
+  enabled: true
   image: bats/bats:1.8.2
   pullPolicy: IfNotPresent
 
@@ -39,6 +39,7 @@ fluent-bit:
 
 grafana:
   enabled: false
+  adminPassword: password123456
   sidecar:
     datasources:
       label: ""
@@ -47,6 +48,14 @@ grafana:
       maxLines: 1000
   image:
     tag: 8.3.5
+  ingress:
+    enabled: true
+    ingressClassName: nginx
+    annotations: { }
+    labels: { }
+    hosts:
+      - grafana.game360.club
+    path: /
 
 prometheus:
   enabled: false
@@ -54,6 +63,20 @@ prometheus:
   url: http://{{ include "prometheus.fullname" .}}:{{ .Values.prometheus.server.service.servicePort }}{{ .Values.prometheus.server.prefixURL }}
   datasource:
     jsonData: "{}"
+  server:
+    persistentVolume:
+      storageClass: "nfs-client"
+    ingress:
+      enabled: true
+      ingressClassName: nginx
+      annotations: { }
+      labels: { }
+      hosts:
+        - prometheus.game360.club
+  alertmanager:
+    ## If false, alertmanager will not be installed
+    ##
+    enabled: false
 
 filebeat:
   enabled: false
