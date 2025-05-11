@@ -23,6 +23,11 @@ backup:
     storage:
       size: 1Gi
 
+service:
+  type: NodePort
+  nodePorts:
+    mongodb: "30017"
+
 metrics:
   enabled: false
   serviceMonitor:
