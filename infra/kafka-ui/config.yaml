@@ -1,0 +1,52 @@
+# Kafka UI Configuration
+yamlApplicationConfig:
+  kafka:
+    clusters:
+      - name: local
+        bootstrapServers: kafka:9092
+        properties:
+          security.protocol: SASL_PLAINTEXT
+          sasl.mechanism: PLAIN
+          sasl.jaas.config: org.apache.kafka.common.security.plain.PlainLoginModule required username="root" password="proot";
+  spring:
+    security:
+      oauth2:
+  auth:
+    type: disabled
+  management:
+    health:
+      ldap:
+        enabled: false
+
+# Ingress configuration
+ingress:
+  # Enable ingress resource
+  enabled: true
+
+  # Annotations for the Ingress
+  annotations: {}
+
+  # ingressClassName for the Ingress
+  ingressClassName: "nginx"
+
+  # The path for the Ingress
+  path: "/"
+
+  # The path type for the Ingress
+  pathType: "Prefix"
+
+  # The hostname for the Ingress
+  host: "kafka-ui.game360.club"
+
+  # configs for Ingress TLS
+  tls:
+    # Enable TLS termination for the Ingress
+    enabled: false
+    # the name of a pre-created Secret containing a TLS private key and certificate
+    secretName: ""
+
+  # HTTP paths to add to the Ingress before the default path
+  precedingPaths: []
+
+  # Http paths to add to the Ingress after the default path
+  succeedingPaths: []
