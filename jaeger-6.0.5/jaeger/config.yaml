@@ -1,0 +1,34 @@
+global:
+  defaultStorageClass: "nfs-client"
+
+query:
+  service:
+    ## @param query.service.type Jaeger service type
+    ##
+    type: NodePort
+    ## Ports to expose
+    ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
+    ports:
+      ## @param query.service.ports.grpc Port for gRPC API
+      ##
+      grpc: 16685
+      ## @param query.service.ports.http Port for API
+      ##
+      http: 16686
+      ## @param query.service.ports.metrics Jaeger query prometheus metrics port
+      ##
+      metrics: 8888
+    ## Node ports to expose
+    ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
+    nodePorts:
+      ## @param query.service.nodePorts.grpc Port for gRPC API
+      ##
+      grpc: 30685
+      ## @param query.service.nodePorts.http Node port for API
+      ##
+      http: 30686
+      ## @param query.service.nodePorts.metrics Jaeger query prometheus metrics port
+      ##
+      metrics: ""
+    ## @param query.service.extraPorts Extra ports to expose in the service (normally used with the `sidecar` value)
+    ##
